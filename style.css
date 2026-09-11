@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Manrope", sans-serif;
+    color: rgb(255, 255, 255);
 }
 
 body {
@@ -38,4 +39,42 @@ body::before {
     border-radius: 12px;
     -webkit-backdrop-filter: blur(100px);
     backdrop-filter: blur(100px);
+    padding: 20px;
+}
+
+/* Input Container */
+.input-container {
+    position: relative;
+}
+
+.city-input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 99px;
+    border: 3px solid transparent;
+    background: rgb(0, 0, 0, 0.15);
+    outline: none;
+    font-weight: 500;
+    transition: 0.25 border;
+    padding-right: 45px;
+}
+
+.city-input:hover,
+.city-input:focus {
+    border: 3px solid rgb(0, 0, 0, 0.10);
+}
+
+.city-input::placeholder {
+    color: rgb(255, 255, 255, 0.75);
+}
+
+.search-btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    display: flex;
+    border: none;
+    cursor: pointer;
 }
