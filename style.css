@@ -141,3 +141,62 @@ img {
     width: 30px;
     object-fit: contain;
 }
+
+.forecast-items-container {
+    display: flex;
+    gap: 10px;
+    overflow: scroll;
+    overflow-y: hidden;
+    padding-bottom: 12px;
+}
+
+.forecast-items-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.forecast-items-container::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0, 0.1);
+    border-radius: 99px;
+}
+
+.forecast-items-container::-webkit-scrollbar-thumb {
+    background: rgb(0, 0, 0, 0.1);
+    border-radius: 99px;
+}
+
+.forecast-item {
+    min-width: 70px;
+    background: rgb(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 12px;
+    transition: 0.3s background;
+}
+
+.forecast-item:hover {
+    background: rgb(255, 255, 255, 0.15);
+}
+
+.forecast-item-img {
+    width: 35px;
+    object-fit: contain;
+}
+
+/*Section Message*/
+.section-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    margin-top: 25%;
+
+}
+
+.section-message img {
+    height: 180px;
+    width: fit-content;
+}
