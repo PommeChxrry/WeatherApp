@@ -19,10 +19,14 @@ cityInput.addEventListener('keydown', (event) => {
         }
 })
 
-function getFetchData() {
+async function getFetchData(endPoint, city) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}`
     
+    const response = await fetch(apiUrl)
+    return response.json()
 }
 
-function updateWeatherInfo(city) {
-    const weatherData = getFetchData()
+async function updateWeatherInfo(city) {
+    const weatherData = await getFetchData('weather', city)
+    console.log(weatherData)
 }
