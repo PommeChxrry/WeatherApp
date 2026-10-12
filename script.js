@@ -38,6 +38,17 @@ async function getFetchData(endPoint, city) {
     return response.json()
 }
 
+function getCurrentDate() {
+    const currentDate = new Date()
+    const options = {
+        weekday: 'short',
+        day: '2-digit',
+        month: 'short'
+    }
+    
+    return currentDate.toLocaleDateString('en-GB', options)
+}
+
 function getWeatherIcon(id) {
     if (id <= 232) return 'Thunderstorm.png'
     if (id <= 321) return 'ShowerRain.png'
@@ -72,6 +83,8 @@ async function updateWeatherInfo(city) {
     conditionTxt.textContent = main
     humidityValueTxt.textContent = humidity + '%'
     windValueTxt.textContent = speed + ' M/s'
+
+    currentDateTxt.textContent = getCurrentDate()
     weatherSummaryImg.src = `assets/weather/${getWeatherIcon(id)}`
 
 
