@@ -38,7 +38,7 @@ You will need an API key from OpenWeatherMap:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/PommeChxrry/WeatherApp.git](https://github.com/PommeChxrry/WeatherApp.git)
+   git clone https://github.com/PommeChxrry/WeatherApp.git
 
 2. **Navigate to the project folder:**
     ```bash
@@ -53,6 +53,14 @@ Open script.js (or your config.js file) and replace apiKey with your actual Open
 
 4. **Launch the app:**
 Open the index.html file in your browser, or use a live server extension (like VS Code Live Server).
+
+## 📸 Preview
+<p align="center">
+  <img src="assets/preview/Screenshot1.png" width="220">
+  <img src="assets/preview/Screenshot2.png" width="220">
+  <img src="assets/preview/Screenshot3.png" width="220">
+  <img src="assets/preview/Screenshot4.png" width="220">
+</p>
 
 ## 👤 Author
 - Sydalia SM
