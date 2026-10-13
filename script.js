@@ -40,15 +40,17 @@ async function getFetchData(endPoint, city) {
     return response.json()
 }
 
-function getCurrentDate() {
-    const currentDate = new Date()
+function getCurrentDate(timezoneOffset) {
+    const utcTime = new Date().getTime() + (new Date().getTimezoneOffset() * 60000)
+    const cityTime = new Date(utcTime + (timezoneOffset * 1000))
+
     const options = {
         weekday: 'short',
         day: '2-digit',
         month: 'short'
     }
     
-    return currentDate.toLocaleDateString('en-GB', options)
+    return cityTime.toLocaleDateString('en-GB', options)
 }
 
 function getWeatherIcon(id) {
@@ -86,7 +88,7 @@ async function updateWeatherInfo(city) {
     humidityValueTxt.textContent = humidity + '%'
     windValueTxt.textContent = speed + ' M/s'
 
-    currentDateTxt.textContent = getCurrentDate()
+    currentDateTxt.textContent = getCurrentDate(weatherData.timezone)
     weatherSummaryImg.src = `assets/weather/${getWeatherIcon(id)}`
 
     await updateForecastInfo(city)
@@ -96,7 +98,12 @@ async function updateWeatherInfo(city) {
 async function updateForecastInfo(city) {
     const forecastsData = await getFetchData('forecast', city)
     const timeTaken = '12:00:00'
-    const todayDate = new Date().toISOString().split('T')[0]
+
+    const timezoneOffset = forecastsData.city.timezone
+
+    const utcTime = new Date().getTime() + (new Date().getTimezoneOffset() * 60000)
+    const cityTime = new Date(utcTime + (timezoneOffset * 1000))
+    const todayDate = cityTime.toISOString().split('T')[0]
 
     forecastItemsContainer.innerHTML = ''
     forecastsData.list.forEach(forecastWeather => {
