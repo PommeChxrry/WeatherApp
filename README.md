@@ -65,3 +65,8 @@ Open the index.html file in your browser, or use a live server extension (like V
 ## 👤 Author
 - Sydalia SM
 - GitHub: [@PommeChxrry](https://github.com/PommeChxrry)
+
+## 📄 License & Artwork
+
+- **Code:** Licensed under the [MIT License](LICENSE) – free to use, modify, and distribute.
+- **Artwork & Drawings:** All custom graphics and icons in the `assets/weather` directory are **© Sydalia SM – All Rights Reserved**. You may NOT reuse, modify, or redistribute the illustrations for other projects without written permission.
