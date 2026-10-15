@@ -8,10 +8,12 @@ A clean and responsive Weather Application built with HTML, CSS, and Vanilla Jav
 
 - **Live Weather Updates:** Displays current temperature, weather conditions, humidity, and wind speed for any city.
 - **Time Zone Synchronization:** Automatically calculates and displays local dates and daily forecasts adjusted to the selected city's timezone.
+- **Day & Night Icons:** Automatically switches between custom day and night weather icons based on the selected city's local sunrise and sunset times.
 - **5-Day Weather Forecast:** Shows upcoming weather trends at 12:00 PM local time.
 - **Dynamic Icons:** Features custom weather icons corresponding to current weather conditions.
 - **Error Handling:** Clean user feedback when searching for invalid city names.
 - **Responsive Layout:** Designed to work smoothly on both desktop and mobile devices.
+
 
 ---
 
@@ -60,6 +62,7 @@ Open the index.html file in your browser, or use a live server extension (like V
   <img src="assets/preview/Screenshot2.png" width="220">
   <img src="assets/preview/Screenshot3.png" width="220">
   <img src="assets/preview/Screenshot4.png" width="220">
+  <img src="assets/preview/Screenshot5.png" width="220">
 </p>
 
 ## 👤 Author
