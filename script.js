@@ -53,15 +53,15 @@ function getCurrentDate(timezoneOffset) {
     return cityTime.toLocaleDateString('en-GB', options)
 }
 
-function getWeatherIcon(id) {
+function getWeatherIcon(id, isDay = true) {
     if (id <= 232) return 'Thunderstorm.png'
     if (id <= 321) return 'ShowerRain.png'
     if (id == 511) return 'Snow.png'
-    if (id <= 531) return 'RainSun.png'
+    if (id <= 531) return isDay ? 'RainSun.png' :'RainMoon.png'
     if (id <= 622) return 'Snow.png'
     if (id <= 781) return 'Mist.png'
-    if (id <= 800) return 'Sun.png'
-    if (id == 801) return 'FewCloudsSun.png'
+    if (id <= 800) return isDay ? 'Sun.png' : 'Moon.png'
+    if (id == 801) return isDay ? 'FewCloudsSun.png' : 'FewCloudsMoon.png'
     if (id == 802) return 'Clouds.png'
     else return 'BrokenClouds.png'
 }
@@ -79,7 +79,9 @@ async function updateWeatherInfo(city) {
             temp, humidity
         },
         weather: [{id, main}],
-        wind: {speed}
+        wind: {speed},
+        sys: {sunrise, sunset},
+        dt
     } = weatherData
 
     countryTxt.textContent = country
@@ -89,7 +91,9 @@ async function updateWeatherInfo(city) {
     windValueTxt.textContent = speed + ' M/s'
 
     currentDateTxt.textContent = getCurrentDate(weatherData.timezone)
-    weatherSummaryImg.src = `assets/weather/${getWeatherIcon(id)}`
+
+    const isDay = dt >= sunrise && dt < sunset
+    weatherSummaryImg.src = `assets/weather/${getWeatherIcon(id, isDay)}`
 
     await updateForecastInfo(city)
     showDisplaySection(weatherInfoSection)
