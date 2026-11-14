@@ -33,8 +33,8 @@ cityInput.addEventListener('keydown', (event) => {
         }
 })
 
-async function getFetchData(endPoint, city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}&units=metric`
+async function getFetchData(endPoint, lat, lon) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
     
     const response = await fetch(apiUrl)
     return response.json()
@@ -67,14 +67,25 @@ function getWeatherIcon(id, isDay = true) {
 }
 
 async function updateWeatherInfo(city) {
-    const weatherData = await getFetchData('weather', city)
+    const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
+    const geoResponse = await fetch(geoUrl)
+    const geoData = await geoResponse.json()
+
+    if (!geoData || geoData.length === 0) {
+        showDisplaySection(notFoundSection)
+        return
+    }
+
+    const { lat, lon, name } = geoData[0]
+
+    const weatherData = await getFetchData('weather', lat, lon)
     if (weatherData.cod != 200) {
         showDisplaySection(notFoundSection)
         return 
     }
+
     console.log(weatherData)
     const {
-        name: country,
         main: {
             temp, humidity
         },
@@ -84,7 +95,7 @@ async function updateWeatherInfo(city) {
         dt
     } = weatherData
 
-    countryTxt.textContent = country
+    countryTxt.textContent = name
     tempTxt.textContent = Math.round(temp) + ' °C'
     conditionTxt.textContent = main
     humidityValueTxt.textContent = humidity + '%'
@@ -95,12 +106,12 @@ async function updateWeatherInfo(city) {
     const isDay = dt >= sunrise && dt < sunset
     weatherSummaryImg.src = `assets/weather/${getWeatherIcon(id, isDay)}`
 
-    await updateForecastInfo(city)
+    await updateForecastInfo(lat, lon)
     showDisplaySection(weatherInfoSection)
 }
 
-async function updateForecastInfo(city) {
-    const forecastsData = await getFetchData('forecast', city)
+async function updateForecastInfo(lat, lon) {
+    const forecastsData = await getFetchData('forecast', lat, lon)
     const timeTaken = '12:00:00'
 
     const timezoneOffset = forecastsData.city.timezone
